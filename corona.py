@@ -3,6 +3,12 @@ from datetime import datetime
 from PIL import Image
 import json
 import requests
+import pandas as pd
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg, NavigationToolbar2Tk)
+# Implement the default Matplotlib key bindings.
+from matplotlib.backend_bases import key_press_handler
+from matplotlib.figure import Figure
 
 ###########################################################
 
@@ -13,6 +19,11 @@ totalconfirmed = info["cases_time_series"][-1]['totalconfirmed']
 totaldeceased = info["cases_time_series"][-1]['totaldeceased']
 totalrecovered = info["cases_time_series"][-1]['totalrecovered']
 date = info["cases_time_series"][-1]['date']
+
+df = pd.DataFrame(info["cases_time_series"])
+df['dailyconfirmed'] = pd.to_numeric(df['dailyconfirmed'],downcast='integer')
+x = df.index
+y =  df['dailyconfirmed']
 
 
 ###########################################################
@@ -80,6 +91,16 @@ app_name.pack()
 
 
 def re():pass
+
+#########################################################################################3
+fig = Figure(figsize=(7, 2), dpi=100)
+fig.add_subplot(111).plot(x, y)
+
+canvas = FigureCanvasTkAgg(fig, master=app)  # A tk.DrawingArea.
+canvas.draw()
+canvas.get_tk_widget().place(x = 100, y = 220)
+
+
 
 
 
