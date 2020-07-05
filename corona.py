@@ -44,6 +44,11 @@ app = Tk()
 app.geometry('1000x600')
 app.resizable(width=0, height=0)
 app.title("CV tracker")
+
+photo = PhotoImage(file = "icons8-coronavirus-50.png")
+app.iconphoto(False, photo)
+
+#app.iconbitmap("icons8-coronavirus-50.png")
 app.configure(bg = col1)
 
 
