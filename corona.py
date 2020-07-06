@@ -52,8 +52,6 @@ app.iconphoto(False, photo)
 app.configure(bg = col1)
 
 
-
-
 name_frame = Frame(app, width = 2000, height = 50, bg = col3, relief = 'flat')
 name_frame.grid(row = 0, column = 0, columnspan = 3, sticky = NSEW)
 
